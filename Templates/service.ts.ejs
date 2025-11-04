@@ -1,0 +1,41 @@
+import { Service, Log } from "@prism-dev/nexus";
+
+/**
+ * Your newly generated `Service`.
+ *
+ * @export
+ * @class <%= serviceName %>
+ * @extends {Service}
+ */
+export class <%= serviceName %> extends Service {
+    /**
+     * Creates an instance of <%= serviceName %>.
+     * 
+     * @memberof <%= serviceName %>
+     */
+    constructor() {
+        super();
+    }
+
+    /**
+     * Initializes <%= serviceName %>.
+     *
+     * @returns {Promise<void>}
+     * @memberof <%= serviceName %>
+     */
+    public async Initialize(): Promise<void> {
+        Log.Info("<%= serviceName %>::Initialize - Initializing <%= serviceName %>.");
+        return Promise.resolve();
+    }
+
+    /**
+     * Shuts down <%= serviceName %>.
+     *
+     * @returns {Promise<void>}
+     * @memberof <%= serviceName %>
+     */
+    public async Shutdown(): Promise<void> {
+        Log.Info("<%= serviceName %>::Shutdown - Shutting down <%= serviceName %>.");
+        return Promise.resolve();
+    }
+}

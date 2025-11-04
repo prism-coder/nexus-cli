@@ -1,0 +1,48 @@
+import { Layer, Log, Event } from "@prism-dev/nexus";
+
+/**
+ * Your newly generated `Layer`.
+ *
+ * @export
+ * @class <%= layerName %>
+ * @extends {Layer}
+ */
+export class <%= layerName %> extends Layer {
+    /**
+     * Called when the `Layer` is attached to the `LayerStack`.
+     *
+     * @memberof <%= layerName %>
+     */
+    OnAttach(): void {
+        Log.Info("<%= layerName %>::OnAttach - Attaching <%= layerName %>");
+    }
+
+    /**
+     * Called when the `Layer` is detached from the `LayerStack`.
+     *
+     * @memberof <%= layerName %>
+     */
+    OnDetach(): void {
+        Log.Info("<%= layerName %>::OnDetach - Detaching <%= layerName %>");
+    }
+
+    /**
+     * Called every Application Tick with a Timestep.
+     *
+     * @param {number} ts The time step since the last update.
+     * @memberof <%= layerName %>
+     */
+    OnUpdate(ts: number): void {
+        // Log.Info("<%= layerName %>::OnUpdate - Updating <%= layerName %>");
+    }
+
+    /**
+     * Called every time this `Layer` receives an `Event`.
+     *
+     * @param {Event} event
+     * @memberof <%= layerName %>
+     */
+    OnEvent(event: Event): void {
+        Log.Info(`<%= layerName %>::OnEvent - Received '${event.Name}' Event on <%= layerName %>`);
+    }
+}

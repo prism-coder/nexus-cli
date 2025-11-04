@@ -1,0 +1,22 @@
+{
+    "name": "<%= projectName %>",
+    "version": "1.0.0",
+    "main": "dist/main.js",
+    "types": "dist/main.d.ts",
+    "scripts": {
+      "build": "npx tsc",
+      "clean": "rm -rf dist tsconfig.tsbuildinfo",
+      "start": "npm run build && node dist/main.js"
+    },
+    "files": [
+      "dist"
+    ],
+    "type": "commonjs",
+    "dependencies": {
+      "@prism-dev/nexus": "^<%= nexusVersion %>"
+    },
+    "devDependencies": {
+      "@types/node": "^<%= typesNodeVersion %>",
+      "typescript": "^<%= typescriptVersion %>"
+    }
+}

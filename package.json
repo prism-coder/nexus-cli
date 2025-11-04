@@ -1,6 +1,6 @@
 {
     "name": "@prism-dev/nexus-cli",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A CLI tool for generating Nexus framework projects and components.",
     "main": "dist/index.js",
     "bin": {
@@ -8,7 +8,8 @@
     },
     "scripts": {
         "build": "npx tsc",
-        "start": "npm run build && node dist/index.js"
+        "start": "npm run build && node dist/index.js",
+        "publish": "npm install && npm run build && npm publish --access public"
     },
     "homepage": "https://github.com/prism-coder/nexus-cli#readme",
     "bugs": {
@@ -18,6 +19,18 @@
         "type": "git",
         "url": "git+https://github.com/prism-coder/nexus-cli.git"
     },
+    "keywords": [
+        "cli",
+        "nexus",
+        "framework",
+        "code-generator",
+        "scaffolding",
+        "typescript",
+        "nodejs",
+        "event-driven",
+        "layer-stack",
+        "architecture"
+    ],
     "author": "Prism",
     "license": "MIT",
     "type": "module",

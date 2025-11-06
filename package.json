@@ -8,8 +8,7 @@
     },
     "scripts": {
         "build": "npx tsc",
-        "start": "npm run build && node dist/index.js",
-        "publish": "npm install && npm run build && npm publish --access public"
+        "start": "npm run build && node dist/index.js"
     },
     "homepage": "https://github.com/prism-coder/nexus-cli#readme",
     "bugs": {

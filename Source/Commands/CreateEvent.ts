@@ -20,7 +20,7 @@ export async function CreateEvent(eventName: string): Promise<void> {
     // Load project configuration
     const config = await LoadConfig();
     const targetDir = path.resolve(process.cwd(), config.paths.events);
-    const targetFile = path.resolve(targetDir, `${eventName}.ts`);
+    const targetFile = path.resolve(targetDir, `${eventName}Event.ts`);
 
     // Check if the file already exists
     if (await fs.pathExists(targetFile)) {

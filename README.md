@@ -6,13 +6,13 @@ This CLI helps you bootstrap new Nexus projects and manage your architecture (`L
 
 ## Features
 
-* **Project Bootstrapping:** Create a new Nexus project with all TypeScript configuration and folder structures ready to go.
+* **Project Bootstrapping:** Create a new Nexus project with all TypeScript configuration the new `EventType.ts` file ready to go.
 
-* **Component Scaffolding:** Quickly generate boilerplate files for `Layers`, `Events`, and `Services`.
+* **Component Scaffolding:** Quickly generate boilerplate files for `Layers`, `Events`, and `Services` that are compatible with the latest Nexus architecture.
 
 * **Smart Configuration:** Reads a `nexus.config.json` in your project root to know where to place new files.
 
-* **Always Up-to-Date:** Automatically fetches the latest versions of `@prism-dev/nexus`, `typescript`, and `@types/node` from the NPM registry when creating a new project.
+* **Always Up-to-Date:** Automatically fetches the latest versions of `@prism-dev/nexus`, `typescript`, and `@types/node` from the NPM registry.
 
 * **Update Notifier:** Notifies you when a new version of the CLI itself is available.
 
@@ -36,7 +36,7 @@ nexus --help
 
 ### Create a New Project
 
-This command generates a complete, ready-to-run project structure.
+This command generates a complete, ready-to-run project structure, including the new `EventType.ts` starter file.
 
 ```bash
 nexus create:project <project-name>
@@ -58,7 +58,8 @@ my-app/
 └── Source/
     ├── main.ts
     ├── Events/
-    │   └── .gitkeep
+    │   └── Types/
+    │       └── EventType.ts  <-- NEW: Includes helpful default event types
     ├── Layers/
     │   └── MyLayer.ts
     └── Services/
@@ -71,6 +72,8 @@ The generated `package.json` will already include the latest versions of `@prism
 
 These commands are used *inside* an existing Nexus project. They will read your `nexus.config.json` to determine where to place the files.
 
+> **Important:** The generator automatically appends the component type (Layer, Event, Service) to the name you provide.
+
 #### Create a Layer
 
 ```bash
@@ -80,9 +83,7 @@ nexus create:layer <LayerName>
 nexus cl <LayerName>
 ```
 
-**Example:** `nexus cl HttpLayer`
-
-This will create `Source/Layers/HttpLayer.ts` (based on the default config).
+**Example:** Running `nexus cl Http` will create the file `Source/Layers/HttpLayer.ts` containing the `HttpLayer` class.
 
 #### Create an Event
 
@@ -93,9 +94,7 @@ nexus create:event <EventName>
 nexus ce <EventName>
 ```
 
-**Example:** `nexus ce UserRegisteredEvent`
-
-This will create `Source/Events/UserRegisteredEvent.ts`.
+**Example:** Running `nexus ce UserRegistered` will create the file `Source/Events/UserRegisteredEvent.ts` containing the `UserRegisteredEvent` class.
 
 #### Create a Service
 
@@ -106,9 +105,7 @@ nexus create:service <ServiceName>
 nexus cs <ServiceName>
 ```
 
-**Example:** `nexus cs DatabaseService`
-
-This will create `Source/Services/DatabaseService.ts`.
+Example: Running `nexus cs Database` will create the file `Source/Services/DatabaseService.ts` containing the `DatabaseService` class (which correctly implements `OnInitialize` and `OnShutdown`).
 
 ## Configuration (`nexus.config.json`)
 

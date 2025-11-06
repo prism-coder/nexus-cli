@@ -1,4 +1,4 @@
-// Import necessary modules and services from nexus.
+// Import necessary modules and services from Nexus.
 import { Application, ApplicationSpecification, Log } from "@prism-dev/nexus";
 
 // Import custom layers.
@@ -12,13 +12,13 @@ import { MyLayer } from "./Layers/MyLayer";
  * @remarks
  */
 (async () => {
-    // Create the Application Specification.
+    // Create the ApplicationSpecification.
     const specification: ApplicationSpecification = {
         Name: "MyApp",
     };
 
-    // Create the Application Instance.
-    const app: Application = Application.Create(specification);
+    // Create the Application instance.
+    const app: Application = new Application(specification);
 
     // Here we could register Services if needed.
     // e.g., app.RegisterService(MyService, new MyService());

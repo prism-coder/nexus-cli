@@ -1,37 +1,38 @@
-import { Event, EventCategory, EventType } from "@prism-dev/nexus";
+import { Event, EventCategory } from "@prism-dev/nexus";
+
+// Import the EventType definitions.
+// Adjust the import path as necessary based on your project structure.
+import { EventType } from "../Types/EventType";
 
 /**
- * Interface that holds the payload of the `Event`.
+ * Interface that holds the payload of the `<%= eventName %>Event`.
  *
  * @export
- * @interface <%= eventName %>Payload
+ * @interface <%= eventName %>EventPayload
  */
-export interface <%= eventName %>Payload {
-    ID: number;
-    Username: string;
-    Name: string;
-    Surname: string;
-    Email: string;
-    Phone: string;
-    Birthday: Date;
-    Image: string;
+export interface <%= eventName %>EventPayload {
+    Data: any; // TODO: Replace 'any' with your specific payload structure.
 }
 
 /**
- * Your newly generated `Event`.
+ * Your newly generated `<%= eventName %>Event`.
  *
  * @export
- * @class <%= eventName %>
+ * @class <%= eventName %>Event
  * @extends {Event}
  */
-export class <%= eventName %> extends Event {
+export class <%= eventName %>Event extends Event {
     public readonly Name: string = "<%= eventName %>";
-    public readonly Type: EventType = EventType.None;
-    public readonly Category: EventCategory = EventCategory.None;
 
-    public readonly Payload: <%= eventName %>Payload;
+    // TODO: Assign a specific EventType from your 'EventType.ts' file.
+    public readonly Type: string = EventType.None;
 
-    constructor(payload: <%= eventName %>Payload) {
+    // TODO: Assign a logical category. 'Custom' is a good default.
+    public readonly Category: EventCategory = EventCategory.Custom;
+
+    public readonly Payload: <%= eventName %>EventPayload;
+
+    constructor(payload: <%= eventName %>EventPayload) {
         super();
         this.Payload = payload;
     }

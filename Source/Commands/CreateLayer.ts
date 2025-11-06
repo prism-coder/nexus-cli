@@ -20,7 +20,7 @@ export async function CreateLayer(layerName: string): Promise<void> {
     // Load project configuration
     const config = await LoadConfig();
     const targetDir = path.resolve(process.cwd(), config.paths.layers);
-    const targetFile = path.resolve(targetDir, `${layerName}.ts`);
+    const targetFile = path.resolve(targetDir, `${layerName}Layer.ts`);
 
     // Check if the file already exists
     if (await fs.pathExists(targetFile)) {

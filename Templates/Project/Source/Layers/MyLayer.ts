@@ -1,8 +1,7 @@
 import { Layer, Log, Event } from "@prism-dev/nexus";
 
 /**
- * A Layer that will serve as a starting point for the
- * Application template.
+ * A Layer that will serve as a starting point.
  *
  * @export
  * @class MyLayer
@@ -10,7 +9,7 @@ import { Layer, Log, Event } from "@prism-dev/nexus";
  */
 export class MyLayer extends Layer {
     /**
-     * Called when the `Layer` is attached to the `LayerStack`.
+     * Called when `MyLayer` is attached to the `LayerStack`.
      *
      * @memberof MyLayer
      */
@@ -19,7 +18,7 @@ export class MyLayer extends Layer {
     }
 
     /**
-     * Called when the `Layer` is detached from the `LayerStack`.
+     * Called when `MyLayer` is detached from the `LayerStack`.
      *
      * @memberof MyLayer
      */
@@ -28,7 +27,7 @@ export class MyLayer extends Layer {
     }
 
     /**
-     * Called every Application Tick with a Timestep.
+     * Called every `Application` tick with a Timestep.
      *
      * @param {number} ts The time step since the last update.
      * @memberof MyLayer
@@ -38,9 +37,9 @@ export class MyLayer extends Layer {
     }
 
     /**
-     * Called every time this `Layer` receives an `Event`.
+     * Called every time `MyLayer` receives an `Event`.
      *
-     * @param {Event} event
+     * @param {Event} event The `Event` received on `MyLayer`.
      * @memberof MyLayer
      */
     OnEvent(event: Event): void {

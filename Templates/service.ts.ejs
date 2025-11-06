@@ -1,41 +1,49 @@
 import { Service, Log } from "@prism-dev/nexus";
 
 /**
- * Your newly generated `Service`.
+ * Your newly generated `<%= serviceName %>Service`.
  *
  * @export
- * @class <%= serviceName %>
+ * @class <%= serviceName %>Service
  * @extends {Service}
  */
-export class <%= serviceName %> extends Service {
+export class <%= serviceName %>Service extends Service {
     /**
-     * Creates an instance of <%= serviceName %>.
+     * Creates an instance of `<%= serviceName %>Service`.
      * 
-     * @memberof <%= serviceName %>
+     * @memberof <%= serviceName %>Service
      */
     constructor() {
         super();
     }
 
     /**
-     * Initializes <%= serviceName %>.
+     * Initializes `<%= serviceName %>Service`.
+     * This method is called by `app.InitializeServices()`.
      *
      * @returns {Promise<void>}
-     * @memberof <%= serviceName %>
+     * @memberof <%= serviceName %>Service
      */
-    public async Initialize(): Promise<void> {
-        Log.Info("<%= serviceName %>::Initialize - Initializing <%= serviceName %>.");
+    public async OnInitialize(): Promise<void> {
+        Log.Info("<%= serviceName %>Service::Initialize - Initializing <%= serviceName %>Service");
+
+        // Add your async initialization logic here
+
         return Promise.resolve();
     }
 
     /**
-     * Shuts down <%= serviceName %>.
+     * Shuts down `<%= serviceName %>Service`.
+     * This method is called by `app.Close()`.
      *
      * @returns {Promise<void>}
-     * @memberof <%= serviceName %>
+     * @memberof <%= serviceName %>Service
      */
-    public async Shutdown(): Promise<void> {
-        Log.Info("<%= serviceName %>::Shutdown - Shutting down <%= serviceName %>.");
+    public async OnShutdown(): Promise<void> {
+        Log.Info("<%= serviceName %>Service::Shutdown - Shutting down <%= serviceName %>Service");
+
+        // Add your async cleanup logic here
+
         return Promise.resolve();
     }
 }

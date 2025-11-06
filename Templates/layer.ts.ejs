@@ -1,48 +1,48 @@
 import { Layer, Log, Event } from "@prism-dev/nexus";
 
 /**
- * Your newly generated `Layer`.
+ * Your newly generated `<%= layerName %>Layer`.
  *
  * @export
- * @class <%= layerName %>
+ * @class <%= layerName %>Layer
  * @extends {Layer}
  */
-export class <%= layerName %> extends Layer {
+export class <%= layerName %>Layer extends Layer {
     /**
-     * Called when the `Layer` is attached to the `LayerStack`.
+     * Called when `<%= layerName %>Layer` is attached to the `LayerStack`.
      *
-     * @memberof <%= layerName %>
+     * @memberof <%= layerName %>Layer
      */
     OnAttach(): void {
-        Log.Info("<%= layerName %>::OnAttach - Attaching <%= layerName %>");
+        Log.Info("<%= layerName %>Layer::OnAttach - Attaching <%= layerName %>Layer");
     }
 
     /**
-     * Called when the `Layer` is detached from the `LayerStack`.
+     * Called when `<%= layerName %>Layer` is detached from the `LayerStack`.
      *
-     * @memberof <%= layerName %>
+     * @memberof <%= layerName %>Layer
      */
     OnDetach(): void {
-        Log.Info("<%= layerName %>::OnDetach - Detaching <%= layerName %>");
+        Log.Info("<%= layerName %>Layer::OnDetach - Detaching <%= layerName %>Layer");
     }
 
     /**
-     * Called every Application Tick with a Timestep.
+     * Called every `Application` tick with a Timestep.
      *
      * @param {number} ts The time step since the last update.
-     * @memberof <%= layerName %>
+     * @memberof <%= layerName %>Layer
      */
     OnUpdate(ts: number): void {
-        // Log.Info("<%= layerName %>::OnUpdate - Updating <%= layerName %>");
+        // Log.Info("<%= layerName %>Layer::OnUpdate - Updating <%= layerName %>Layer");
     }
 
     /**
-     * Called every time this `Layer` receives an `Event`.
+     * Called every time `<%= layerName %>Layer` receives an `Event`.
      *
-     * @param {Event} event
-     * @memberof <%= layerName %>
+     * @param {Event} event The `Event` received on `<%= layerName %>Layer`.
+     * @memberof <%= layerName %>Layer
      */
     OnEvent(event: Event): void {
-        Log.Info(`<%= layerName %>::OnEvent - Received '${event.Name}' Event on <%= layerName %>`);
+        Log.Info(`<%= layerName %>Layer::OnEvent - Received '${event.Name}' Event on <%= layerName %>Layer`);
     }
 }

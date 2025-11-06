@@ -20,7 +20,7 @@ export async function CreateService(serviceName: string): Promise<void> {
     // Load project configuration
     const config = await LoadConfig();
     const targetDir = path.resolve(process.cwd(), config.paths.services);
-    const targetFile = path.resolve(targetDir, `${serviceName}.ts`);
+    const targetFile = path.resolve(targetDir, `${serviceName}Service.ts`);
 
     // Check if the file already exists
     if (await fs.pathExists(targetFile)) {

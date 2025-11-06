@@ -71,7 +71,7 @@ async function main(): Promise<void> {
 
     program
         .name("nexus")
-        .description("CLI for the Nexus framework")
+        .description("A CLI tool for generating Nexus framework projects and components.")
         .version(currentVersion, "-v, --version", "Output the current version");
 
     // --- Command: create project ---

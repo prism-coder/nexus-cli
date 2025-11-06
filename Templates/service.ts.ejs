@@ -25,7 +25,7 @@ export class <%= serviceName %>Service extends Service {
      * @memberof <%= serviceName %>Service
      */
     public async OnInitialize(): Promise<void> {
-        Log.Info("<%= serviceName %>Service::Initialize - Initializing <%= serviceName %>Service");
+        Log.Info("<%= serviceName %>Service::OnInitialize - Initializing <%= serviceName %>Service");
 
         // Add your async initialization logic here
 
@@ -40,7 +40,7 @@ export class <%= serviceName %>Service extends Service {
      * @memberof <%= serviceName %>Service
      */
     public async OnShutdown(): Promise<void> {
-        Log.Info("<%= serviceName %>Service::Shutdown - Shutting down <%= serviceName %>Service");
+        Log.Info("<%= serviceName %>Service::OnShutdown - Shutting down <%= serviceName %>Service");
 
         // Add your async cleanup logic here
 

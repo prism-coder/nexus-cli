@@ -32,6 +32,12 @@ export class <%= eventName %>Event extends Event {
 
     public readonly Payload: <%= eventName %>EventPayload;
 
+    /**
+     * Creates an instance of `<%= eventName %>Event`.
+     *
+     * @param {<%= eventName %>EventPayload} payload The payload for `<%= eventName %>Event`.
+     * @memberof <%= eventName %>Event
+     */
     constructor(payload: <%= eventName %>EventPayload) {
         super();
         this.Payload = payload;

@@ -1,5 +1,7 @@
 # Nexus CLI
 
+![Nexus. The composable backend. Build with intention](Assets/Nexus%20-%20Card.png "Nexus Banner")
+
 A simple and powerful CLI tool for generating projects and components for the **Nexus** framework.
 
 This CLI helps you bootstrap new Nexus projects and manage your architecture (`Layers`, `Events`, `Services`) as your application grows.

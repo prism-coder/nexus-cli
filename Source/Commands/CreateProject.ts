@@ -59,10 +59,22 @@ export async function CreateProject(projectName: string): Promise<void> {
                 GetLatestVersion("typescript"),
             ]);
 
+        // Get the CLI package.json
+        const cliPackageJsonPath = path.resolve(
+            __dirname,
+            "../../package.json"
+        );
+
+        // Get the CLI version
+        const { version: currentVersion } = await fs.readJson(
+            cliPackageJsonPath
+        );
+
         // Template data, with fallbacks in case NPM fails
         const templateData = {
             projectName,
-            nexusVersion: nexusVersion || "1.0.2", // Original version
+            currentVersion: currentVersion || "1.1.4", // Current CLI version
+            nexusVersion: nexusVersion || "1.1.3", // Original version
             typesNodeVersion: typesNodeVersion || "20.11.0", // A recent LTS
             typescriptVersion: typescriptVersion || "5.3.3", // A recent stable
         };
@@ -74,7 +86,7 @@ export async function CreateProject(projectName: string): Promise<void> {
         const pkgJsonTemplatePath = path.join(targetDir, "package.json.ejs");
         const pkgJsonContent = await fs.readFile(pkgJsonTemplatePath, "utf-8");
 
-        // We passed the version data to EJS
+        // We passed the template data to EJS
         const renderedPkgJson = ejs.render(pkgJsonContent, templateData);
 
         // Write the final package.json
@@ -82,6 +94,16 @@ export async function CreateProject(projectName: string): Promise<void> {
             path.join(targetDir, "package.json"),
             renderedPkgJson
         );
+
+        // Render the README.md.ejs template
+        const readmeTemplatePath = path.join(targetDir, "README.md.ejs");
+        const readmeContent = await fs.readFile(readmeTemplatePath, "utf-8");
+
+        // We passed the version data to EJS
+        const renderedReadme = ejs.render(readmeContent, templateData);
+
+        // Write the final README.md
+        await fs.writeFile(path.join(targetDir, "README.md"), renderedReadme);
 
         // Rename special files
         // .gitignore

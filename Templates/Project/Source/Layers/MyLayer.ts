@@ -43,6 +43,8 @@ export class MyLayer extends Layer {
      * @memberof MyLayer
      */
     OnEvent(event: Event): void {
-        Log.Info(`MyLayer::OnEvent - Received '${event.Name}' Event on MyLayer`);
+        Log.Info(
+            `MyLayer::OnEvent - Received '${event.Name}' Event on MyLayer`
+        );
     }
 }

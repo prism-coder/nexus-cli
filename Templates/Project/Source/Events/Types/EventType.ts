@@ -1,10 +1,10 @@
 /**
  * Defines the various `Event` types used in the `Application`.
  * Each `Event` type is represented as a string constant.
- * 
+ *
  * This structure helps in maintaining consistency and avoiding typos
  * when referring to `Event` types throughout the codebase.
- * 
+ *
  * We recommend using a nested object structure to categorize `Event` types
  * based on their context or domain.
  */
@@ -77,7 +77,7 @@ export const EventType = {
 
     /**
      * A space for your own custom application events.
-     * 
+     *
      * @example
      * ```typescript
      * Custom: {

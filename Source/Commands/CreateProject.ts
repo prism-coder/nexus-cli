@@ -114,6 +114,7 @@ export async function CreateProject(projectName: string): Promise<void> {
 
         // Delete .ejs files
         await fs.remove(pkgJsonTemplatePath);
+        await fs.remove(readmeTemplatePath);
 
         // Success
         console.log(

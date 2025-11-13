@@ -62,7 +62,7 @@ export async function CreateProject(projectName: string): Promise<void> {
         // Get the CLI package.json
         const cliPackageJsonPath = path.resolve(
             __dirname,
-            "../../package.json"
+            "../package.json"
         );
 
         // Get the CLI version

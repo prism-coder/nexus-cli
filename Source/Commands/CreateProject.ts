@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import chalk from 'chalk';
 import ejs from 'ejs';
 import inquirer from 'inquirer';
+import { execSync } from 'child_process';
 
 // Import the __dirname defined in index.ts
 import { __dirname } from '../index.js';
@@ -116,6 +117,18 @@ export async function CreateProject(projectName: string): Promise<void> {
         await fs.remove(pkgJsonTemplatePath);
         await fs.remove(readmeTemplatePath);
 
+        // Initialize git repository
+        try {
+            console.log(chalk.dim("Initializing git repository..."));
+            execSync("git init", { cwd: targetDir, stdio: "ignore" });
+        } catch {
+            console.log(chalk.yellow("Warning: Could not initialize git repository. Is git installed?"));
+        }
+
+        // Install dependencies
+        console.log(chalk.dim("Installing dependencies..."));
+        execSync("npm install", { cwd: targetDir, stdio: "inherit" });
+
         // Success
         console.log(
             chalk.green(
@@ -124,11 +137,11 @@ export async function CreateProject(projectName: string): Promise<void> {
         );
         console.log(chalk.cyan("\nNext steps:"));
         console.log(`  1. ${chalk.bold(`cd ${projectName}`)}`);
-        console.log(`  2. ${chalk.bold(`npm install`)} (or yarn/pnpm)`);
-        console.log(`  3. ${chalk.bold(`npm start`)}`);
+        console.log(`  2. ${chalk.bold(`npm start`)}`);
     } catch (error) {
         console.error(chalk.red(`\nError creating project:`));
         console.error(error);
+        
         await fs.remove(targetDir); // Clean up in case of error
     }
 }

@@ -1,0 +1,83 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://unpkg.com/@prism-dev/nexus-cli/nexus.config.schema.json",
+    "title": "Nexus Configuration",
+    "description": "Configuration file for the Nexus framework and CLI.",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "JSON Schema reference."
+        },
+        "paths": {
+            "type": "object",
+            "description": "Customizes the directory paths used by the CLI when generating components.",
+            "additionalProperties": false,
+            "properties": {
+                "layers": {
+                    "type": "string",
+                    "description": "Directory where generated Layer files are placed.",
+                    "default": "Source/Layers"
+                },
+                "events": {
+                    "type": "string",
+                    "description": "Directory where generated Event files are placed.",
+                    "default": "Source/Events"
+                },
+                "services": {
+                    "type": "string",
+                    "description": "Directory where generated Service files are placed.",
+                    "default": "Source/Services"
+                },
+                "tests": {
+                    "type": "string",
+                    "description": "Root directory for generated test files.",
+                    "default": "Tests"
+                }
+            }
+        },
+        "naming": {
+            "type": "object",
+            "description": "Controls naming conventions applied to generated files.",
+            "additionalProperties": false,
+            "properties": {
+                "appendSuffix": {
+                    "type": "boolean",
+                    "description": "When true, appends the component type suffix (e.g. 'Layer', 'Event', 'Service') to generated file names.",
+                    "default": true
+                }
+            }
+        },
+        "logging": {
+            "type": "object",
+            "description": "Controls the behaviour of the Nexus Log utility at runtime.",
+            "additionalProperties": false,
+            "properties": {
+                "level": {
+                    "type": "string",
+                    "description": "Minimum log level to emit. Messages below this level are suppressed.",
+                    "enum": ["debug", "info", "warn", "error"],
+                    "default": "info"
+                },
+                "timestamps": {
+                    "type": "boolean",
+                    "description": "When true, a timestamp is prepended to every log message.",
+                    "default": false
+                }
+            }
+        },
+        "generation": {
+            "type": "object",
+            "description": "Controls automatic file generation behaviour.",
+            "additionalProperties": false,
+            "properties": {
+                "tests": {
+                    "type": "boolean",
+                    "description": "When true, a corresponding test file is generated alongside each new component.",
+                    "default": false
+                }
+            }
+        }
+    }
+}

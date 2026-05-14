@@ -12,6 +12,21 @@ export interface NexusConfig {
         layers: string;
         events: string;
         services: string;
+        tests: string;
+    };
+    naming: {
+        /** When true, appends the type suffix (e.g. 'Layer', 'Event', 'Service') to generated file names. */
+        appendSuffix: boolean;
+    };
+    logging: {
+        /** Minimum log level emitted by the Nexus Log utility. */
+        level: "debug" | "info" | "warn" | "error";
+        /** When true, a timestamp is prepended to every log message. */
+        timestamps: boolean;
+    };
+    generation: {
+        /** When true, a corresponding test file is generated alongside each new component. */
+        tests: boolean;
     };
 }
 
@@ -25,6 +40,17 @@ const defaultConfig: NexusConfig = {
         layers: "Source/Layers",
         events: "Source/Events",
         services: "Source/Services",
+        tests: "Tests",
+    },
+    naming: {
+        appendSuffix: true,
+    },
+    logging: {
+        level: "info",
+        timestamps: false,
+    },
+    generation: {
+        tests: false,
     },
 };
 
@@ -43,12 +69,24 @@ export async function LoadConfig(): Promise<NexusConfig> {
             const userConfig = (await fs.readJson(
                 configPath
             )) as Partial<NexusConfig>;
-            // Merges user paths with default paths
-            // giving precedence to user-defined paths.
+            // Merges user config with defaults for each section,
+            // giving precedence to user-defined values.
             return {
                 paths: {
                     ...defaultConfig.paths,
                     ...(userConfig.paths || {}),
+                },
+                naming: {
+                    ...defaultConfig.naming,
+                    ...(userConfig.naming || {}),
+                },
+                logging: {
+                    ...defaultConfig.logging,
+                    ...(userConfig.logging || {}),
+                },
+                generation: {
+                    ...defaultConfig.generation,
+                    ...(userConfig.generation || {}),
                 },
             };
         } else {

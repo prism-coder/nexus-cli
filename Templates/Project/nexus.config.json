@@ -1,7 +1,19 @@
 {
+    "$schema": "https://unpkg.com/@prism-dev/nexus-cli/nexus.config.schema.json",
     "paths": {
         "layers": "Source/Layers",
         "events": "Source/Events",
-        "services": "Source/Services"
+        "services": "Source/Services",
+        "tests": "Tests"
+    },
+    "naming": {
+        "appendSuffix": true
+    },
+    "logging": {
+        "level": "info",
+        "timestamps": false
+    },
+    "generation": {
+        "tests": false
     }
 }

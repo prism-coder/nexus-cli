@@ -4,23 +4,25 @@
 
 A simple and powerful CLI tool for generating projects and components for the **Nexus** framework.
 
-This CLI helps you bootstrap new Nexus projects and manage your architecture (`Layers`, `Events`, `Services`) as your application grows.
+Bootstrap a new Nexus project in seconds, then keep your architecture clean as it grows. Generate `Layers`, `Events`, and `Services` without ever writing boilerplate by hand.
 
 ## Features
 
-* **Project Bootstrapping:** Create a new Nexus project with all TypeScript configuration the new `EventType.ts` file ready to go.
+* **Project Bootstrapping:** Scaffold a complete, TypeScript-ready Nexus project with a single command, including sensible defaults and a starter `EventType.ts`.
 
-* **Component Scaffolding:** Quickly generate boilerplate files for `Layers`, `Events`, and `Services` that are compatible with the latest Nexus architecture.
+* **Built-in Test Suite:** Every generated project ships with [Jest](https://jestjs.io/) + [ts-jest](https://kulshekhar.github.io/ts-jest/) pre-configured and a matching `Tests/` directory that mirrors your `Source/` layout.
 
-* **Smart Configuration:** Reads a `nexus.config.json` in your project root to know where to place new files.
+* **Component Scaffolding:** Generate boilerplate for `Layers`, `Events`, and `Services` that are compatible with the latest Nexus architecture.
 
-* **Always Up-to-Date:** Automatically fetches the latest versions of `@prism-dev/nexus`, `typescript`, and `@types/node` from the NPM registry.
+* **Smart Configuration:** Reads `nexus.config.json` in your project root to know exactly where to place new files.
 
-* **Update Notifier:** Notifies you when a new version of the CLI itself is available.
+* **Always Up-to-Date:** Automatically resolves the latest versions of `@prism-dev/nexus`, `typescript`, `jest`, `ts-jest`, and related types from the NPM registry at project creation time.
+
+* **Update Notifier:** Lets you know when a new version of the CLI itself is available.
 
 ## Installation
 
-To use the CLI globally, install it using `npm`:
+Install the CLI globally via `npm`:
 
 ```bash
 npm install -g @prism-dev/nexus-cli
@@ -28,7 +30,7 @@ npm install -g @prism-dev/nexus-cli
 
 ## Usage
 
-The main command is `nexus`. You can see all available commands by running:
+The main command is `nexus`. See all available commands at any time:
 
 ```bash
 nexus --help
@@ -38,7 +40,7 @@ nexus --help
 
 ### Create a New Project
 
-This command generates a complete, ready-to-run project structure, including the new `EventType.ts` starter file.
+Generates a complete, ready-to-run project structure with TypeScript config, a Jest test suite, and a starter `EventType.ts`.
 
 ```bash
 nexus create:project <project-name>
@@ -49,32 +51,43 @@ nexus cp <project-name>
 
 **Example:** `nexus create:project my-app`
 
-This will create a new folder `my-app/` with the following structure:
+This creates a `my-app/` folder with the following layout:
 
 ```
 my-app/
 ├── .gitignore
+├── jest.config.js
 ├── nexus.config.json
 ├── package.json
 ├── tsconfig.json
-└── Source/
-    ├── main.ts
+├── tsconfig.test.json
+├── Source/
+│   ├── main.ts
+│   ├── Events/
+│   │   ├── MyEvent.ts
+│   │   └── Types/
+│   │       └── EventType.ts
+│   ├── Layers/
+│   │   └── MyLayer.ts
+│   └── Services/
+│       └── MyService.ts
+└── Tests/
     ├── Events/
-    │   └── Types/
-    │       └── EventType.ts  <-- NEW: Includes helpful default event types
+    │   └── MyEvent.test.ts
     ├── Layers/
-    │   └── MyLayer.ts
-    └── Services/
-        └── .gitkeep
+    │   └── MyLayer.test.ts
+    ├── Services/
+    │   └── MyService.test.ts
+    └── tsconfig.json
 ```
 
-The generated `package.json` will already include the latest versions of `@prism-dev/nexus` and its development dependencies.
+The generated `package.json` includes the latest compatible versions of `@prism-dev/nexus`, `jest`, `ts-jest`, and all required TypeScript dev dependencies. No manual version pinning needed.
 
 ### Scaffolding Components
 
-These commands are used *inside* an existing Nexus project. They will read your `nexus.config.json` to determine where to place the files.
+These commands work inside an existing Nexus project and read `nexus.config.json` to determine where to place files.
 
-> **Important:** The generator automatically appends the component type (Layer, Event, Service) to the name you provide.
+> **Note:** The generator automatically appends the component type (`Layer`, `Event`, `Service`) to the name you provide.
 
 #### Create a Layer
 
@@ -85,7 +98,7 @@ nexus create:layer <LayerName>
 nexus cl <LayerName>
 ```
 
-**Example:** Running `nexus cl Http` will create the file `Source/Layers/HttpLayer.ts` containing the `HttpLayer` class.
+**Example:** `nexus cl Http` creates `Source/Layers/HttpLayer.ts` with the `HttpLayer` class.
 
 #### Create an Event
 
@@ -96,7 +109,7 @@ nexus create:event <EventName>
 nexus ce <EventName>
 ```
 
-**Example:** Running `nexus ce UserRegistered` will create the file `Source/Events/UserRegisteredEvent.ts` containing the `UserRegisteredEvent` class.
+**Example:** `nexus ce UserRegistered` creates `Source/Events/UserRegisteredEvent.ts` with the `UserRegisteredEvent` class.
 
 #### Create a Service
 
@@ -107,15 +120,11 @@ nexus create:service <ServiceName>
 nexus cs <ServiceName>
 ```
 
-Example: Running `nexus cs Database` will create the file `Source/Services/DatabaseService.ts` containing the `DatabaseService` class (which correctly implements `OnInitialize` and `OnShutdown`).
+**Example:** `nexus cs Database` creates `Source/Services/DatabaseService.ts` with the `DatabaseService` class, implementing `OnInitialize` and `OnShutdown`.
 
 ## Configuration (`nexus.config.json`)
 
-When you run the `create:layer`, `create:event`, or `create:service` commands, the CLI will look for a `nexus.config.json` file in the current directory.
-
-If not found, it will use these defaults:
-
-`nexus.config.json` **(Default)**
+The scaffolding commands look for a `nexus.config.json` in the current directory. If none is found, these defaults are used:
 
 ```json
 {
@@ -127,9 +136,7 @@ If not found, it will use these defaults:
 }
 ```
 
-You can customize this file. For example, if you prefer to have your services in an `App/Infrastructure/` folder, you can change it:
-
-`nexus.config.json` **(Custom)**
+You can point any path to a custom location. For example:
 
 ```json
 {
@@ -141,7 +148,7 @@ You can customize this file. For example, if you prefer to have your services in
 }
 ```
 
-Now, running `nexus cs DatabaseService` will create the file at `Source/Infrastructure/Services/DatabaseService.ts`.
+Running `nexus cs Database` after this change will place the file at `Source/Infrastructure/Services/DatabaseService.ts`.
 
 ## License
 

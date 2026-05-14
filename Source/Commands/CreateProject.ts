@@ -53,12 +53,21 @@ export async function CreateProject(projectName: string): Promise<void> {
             chalk.dim("Searching for the latest versions of dependencies...")
         );
 
-        const [nexusVersion, typesNodeVersion, typescriptVersion] =
-            await Promise.all([
-                GetLatestVersion("@prism-dev/nexus"),
-                GetLatestVersion("@types/node"),
-                GetLatestVersion("typescript"),
-            ]);
+        const [
+            nexusVersion,
+            typesJestVersion,
+            typesNodeVersion,
+            jestVersion,
+            tsJestVersion,
+            typescriptVersion,
+        ] = await Promise.all([
+            GetLatestVersion("@prism-dev/nexus"),
+            GetLatestVersion("@types/jest"),
+            GetLatestVersion("@types/node"),
+            GetLatestVersion("jest"),
+            GetLatestVersion("ts-jest"),
+            GetLatestVersion("typescript"),
+        ]);
 
         // Get the CLI package.json
         const cliPackageJsonPath = path.resolve(
@@ -76,7 +85,10 @@ export async function CreateProject(projectName: string): Promise<void> {
             projectName,
             currentVersion: currentVersion || "1.1.4", // Current CLI version
             nexusVersion: nexusVersion || "1.1.3", // Original version
+            typesJestVersion: typesJestVersion || "29.5.0", // A recent stable
             typesNodeVersion: typesNodeVersion || "20.11.0", // A recent LTS
+            jestVersion: jestVersion || "29.5.0", // A recent stable
+            tsJestVersion: tsJestVersion || "29.1.0", // A recent stable
             typescriptVersion: typescriptVersion || "5.3.3", // A recent stable
         };
 

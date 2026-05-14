@@ -1,0 +1,16 @@
+{
+    "conventionalCommits.scopes": [
+        "NPM",
+        "Services",
+        "Tests",
+        "Documentation",
+        "CLI",
+        "Commands",
+        "Templates",
+        "Events",
+        "Layers",
+        "Projects",
+        "Config",
+        "VersionCheck",
+    ]
+}

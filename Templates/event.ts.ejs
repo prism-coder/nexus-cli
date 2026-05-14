@@ -22,7 +22,7 @@ export interface <%= eventName %>EventPayload {
  * @extends {Event}
  */
 export class <%= eventName %>Event extends Event {
-    public readonly Name: string = "<%= eventName %>";
+    public readonly Name: string = "<%= eventName %>Event";
 
     // TODO: Assign a specific EventType from your 'EventType.ts' file.
     public readonly Type: string = EventType.None;

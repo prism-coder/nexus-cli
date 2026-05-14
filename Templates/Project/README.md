@@ -51,4 +51,5 @@ Build artifacts are written to `dist/`. Use `npm run clean` to remove them.
 
 ## Additional Resources
 
-- [Nexus CLI repository](https://github.com/prism-coder/nexus-cli) — full command reference and documentation
+- [Nexus CLI repository](https://github.com/prism-coder/nexus-cli): Full command reference and documentation.
+- [Nexus repository](https://github.com/prism-coder/nexus): Full documentation on the framework.
